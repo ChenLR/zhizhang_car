@@ -1,12 +1,8 @@
-import wiringpi
-wiringpi.wiringPiSetupGpio()
-wiringpi.pinMode(21,1)
-wiringpi.digitalWrite(21,1)
-#i=wiringpi.softPwmCreate(21,1,100)
-#wiringpi.softPwmWrite(21,50)
-try:
-    while 1:
-        pass
-except KeyboardInterrupt:
-    pass
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BOARO)
+GPIO.setup(11,GPIO.OUT)
+p=GPIO.PWM(11,50)
+p.start(50)
+p.stop()
+GPIO.cleanup()
 
