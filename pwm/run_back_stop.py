@@ -13,4 +13,5 @@ GPIO.output(12, 1)        # set GPIO24 to 0/GPIO.LOW/False
 sleep(5)                 # wait half a second  
 GPIO.output(11, 1)  
 GPIO.output(12, 1) 
-
+sleep(5)    
+GPIO.cleanup()  
