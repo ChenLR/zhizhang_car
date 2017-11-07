@@ -11,11 +11,10 @@ capture = cv2.VideoCapture(0)
 encode_param=[int(cv2.IMWRITE_JPEG_QUALITY),90]
 while 1:
     ret, frame = capture.read()
-    frame=cv2.resize(frame,(512,512))
+    frame=cv2.resize(frame,(140,140))
     result, imgencode = cv2.imencode('.jpg', frame, encode_param)
     data = numpy.array(imgencode)
     stringData = data.tostring()
-    if len(stringData)<65500:
-        sock.sendto(stringData,("101.5.210.192",6789) )
+    sock.sendto(stringData,("101.5.210.125",6789) )
 sock.close()
 

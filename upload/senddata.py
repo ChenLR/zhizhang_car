@@ -3,7 +3,7 @@ import numpy
 from PIL  import Image
 import cv2
 
-address = ('101.5.210.125', 8002)
+address = ('101.5.216.132', 8002)
 sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 sock.connect(address)
 
