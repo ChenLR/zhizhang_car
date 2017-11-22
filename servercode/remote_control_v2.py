@@ -22,13 +22,13 @@ class send_instru(object):
     def __init__(self,ip,port):
         self.address=(ip,port)
         self.sock=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    def send(self,sp1,sp2):
-        msg = self.sp_tomsg(sp1,sp2)
+    def send(self,sps):
+        msg = self.sp_tomsg(sps)
         self.sock.sendto(msg,self.address)
     def close(self):
         self.sock.close()
-    def sp_tomsg(self,sp1,sp2):
-        return str(sp1)+' '+str(sp2)
+    def sp_tomsg(self,sps):
+        return ' '.join([str(sp) for sp in sps])
 
 
 class Cursor(object):
@@ -74,6 +74,10 @@ class InteractiveViewer(object):
         self.left = False
         self.right = False
 
+        self.w = False
+        self.a = False
+        self.d = False
+
     def on_click(self, event):
         print "clicked"
         return
@@ -95,6 +99,12 @@ class InteractiveViewer(object):
             self.left = True
         elif key == 'right':
             self.right = True
+        elif key == 'w':
+            self.w = True
+        elif key == 'a':
+            self.a = True
+        elif key == 'd':
+            self.d = True
         # print "key pressed", self.key_event.key
 
     def on_key_release(self, event):
@@ -109,6 +119,12 @@ class InteractiveViewer(object):
             self.left = False
         elif key == 'right':
             self.right = False
+        elif key == 'w':
+            self.w = False
+        elif key == 'a':
+            self.a = False
+        elif key == 'd':
+            self.d = False
         # print "key release", self.key_event.key
 
     def connect(self):
@@ -148,6 +164,18 @@ class InteractiveViewer(object):
         # direct = 1, 0, -1
         forward = 0
         direct = 0
+        tb = 0
+        lr = 0
+
+        if self.w:
+            tb = 45
+
+        if self.a:
+            lr = -45
+        elif self.d:
+            lr = 45
+
+
         if self.up and not self.down:
             forward = 1
         elif self.down and not self.up:
@@ -170,7 +198,7 @@ class InteractiveViewer(object):
         left = cmd[0]
         right = cmd[1]
 
-        self.sender.send(left, right)
+        self.sender.send([left, right, tb, lr])
 
         
 
