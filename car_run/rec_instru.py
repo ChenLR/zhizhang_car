@@ -13,8 +13,9 @@ class get_instru(object):
 k=get_instru('0.0.0.0',31423)
 '''
 def msg_tosp(msg):
-    sp0,sp1=msg.split()
-    return int(sp0),int(sp1)
+    print msg
+    sps = [int(item) for item in msg.split()]
+    return sps
 '''
 while 1:
     print msg_tosp(k.getin())
