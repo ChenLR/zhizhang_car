@@ -16,6 +16,6 @@ while 1:
     data = numpy.array(imgencode)
     stringData = data.tostring()
     if len(stringData)<65500:
-        sock.sendto(stringData,("101.5.210.141",6789) )
+        sock.sendto(stringData,("101.5.210.160",6789) )
 sock.close()
 
